@@ -1,0 +1,66 @@
+#footer{
+    background-color: #ffa500;
+}
+
+.body-home{
+    background: linear-gradient(to right, #e0e0e0, #bdbdbd, #9e9e9e);
+}
+
+
+.navbar-nav .nav-link {
+    margin: 0 1rem;
+    color: inherit;
+    transition: color 0.3s ease;
+  }
+
+  .navbar-nav .nav-link:hover {
+    color: #FFA500;
+  }
+
+
+.body-registro{
+    background: linear-gradient(to right, #e0e0e0, #bdbdbd, #9e9e9e);
+}
+
+.card-login-custom {
+    background-color: rgba(255, 255, 255, 0.05); /* fondo muy suave */
+    border: 1px solid rgba(255, 255, 255, 0.2);  /* borde translúcido */
+    border-radius: 15px;
+    box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.1); /* sombra blanca suave */
+    backdrop-filter: blur(5px); /* efecto tipo vidrio */
+    -webkit-backdrop-filter: blur(5px);
+   
+}
+
+#logo-img{
+    width: 100px;
+    height: 100px;
+}
+
+.input-registro:focus {
+    border-color: #FFA500;
+    box-shadow: 0 0 0 0.2rem rgba(255, 165, 0, 0.25);
+  }
+  
+  .link-volver {
+    text-decoration: none;
+  }
+  
+  .link-volver:hover {
+    color: #FFA500;
+    text-decoration: underline;
+  }
+  
+
+.form-input{
+    
+    border-color: #ffa500;
+    
+}
+
+
+
+.body-login{
+    background: linear-gradient(to right, #e0e0e0, #bdbdbd, #9e9e9e);
+
+}
