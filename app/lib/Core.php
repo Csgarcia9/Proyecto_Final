@@ -6,6 +6,9 @@ class Core {
     protected $params = [];
 
     public function __construct($url = null) {
+        require_once '../app/config/db.php'; // Requerir la conexión
+
+        // Obtener la URL
         $url = $this->getUrl($url);
 
         // Verificar si el primer segmento es un controlador válido
@@ -36,7 +39,13 @@ class Core {
 
         // Si se encontró un controlador diferente a Views
         require_once '../app/controllers/' . $this->currentController . '.php';
-        $this->currentController = new $this->currentController;
+
+        // Verificar si el controlador requiere la conexión
+        if ($this->currentController === 'Auth') {
+            $this->currentController = new $this->currentController($conexion); // Pasar $conexion a Auth
+        } else {
+            $this->currentController = new $this->currentController; // Controladores sin $conexion
+        }
 
         // Método
         if (isset($url[1]) && method_exists($this->currentController, $url[1])) {
@@ -49,6 +58,11 @@ class Core {
 
         // Ejecutar
         call_user_func_array([$this->currentController, $this->currentMethod], $this->params);
+
+        // Pasar la conexión a las vistas si es necesario
+        if (isset($this->currentController) && method_exists($this->currentController, 'setConexion')) {
+            $this->currentController->setConexion($conexion);
+        }
     }
 
     public function getUrl($url = null) {

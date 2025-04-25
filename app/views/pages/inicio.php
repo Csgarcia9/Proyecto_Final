@@ -1,7 +1,7 @@
 <?php require_once APP . '/views/inc/header.php' ?>
 
 <body class="body-home">
-
+  
   <!-- Navbar con links centrados -->
   <nav class="navbar navbar-expand-lg" style="background-color: inherit;">
     <div class="container d-flex justify-content-center">
@@ -20,12 +20,31 @@
   </nav>
 
   <!-- Espacio para el carrusel -->
-  <main class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
-    <div class="container text-center">
-      <div id="carousel-placeholder">
-        <p class="text-muted">Aquí irá tu carrusel</p>
+    <main class="d-flex justify-content-center align-items-center m-3">
+      <div class="container text-center m-5">
+        <div id="carruselPrincipal" class="carousel slide carousel-custom" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="./public/img/finanzas.jpg" class="d-block mx-auto carousel-img" alt="Imagen 1">
+            </div>
+            <div class="carousel-item">
+              <img src="./public/img/inventario.jpg" class="d-block mx-auto carousel-img" alt="Imagen 2">
+            </div>
+            <div class="carousel-item">
+              <img src="./public/img/Simple.jpg" class="d-block mx-auto carousel-img" alt="Imagen 3">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carruselPrincipal" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carruselPrincipal" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+          </button>
+        </div>
       </div>
-    </div>
-  </main>
+    </main>
+
 
 <?php require_once APP . '/views/inc/footer.php' ?>

@@ -3,6 +3,14 @@
 class Views extends Control
 {
 
+
+  private $conexion;
+
+    // Método para establecer la conexión
+    public function setConexion($conexion) {
+        $this->conexion = $conexion;
+    }
+    
   public function index()
   {
     $datos = [

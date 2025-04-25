@@ -64,3 +64,105 @@
     background: linear-gradient(to right, #e0e0e0, #bdbdbd, #9e9e9e);
 
 }
+
+
+.carousel-custom {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  max-height: 940px;
+}
+
+.carousel-img {
+  max-width: 900px;
+  height: 600px;
+  border-radius: 10px;
+}
+
+nav.navbar {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+  backdrop-filter: blur(6px); 
+  -webkit-backdrop-filter: blur(6px); 
+  background-color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1rem; 
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05); 
+  z-index: 10;
+}
+
+/* dash*/
+
+/* Estilos generales */
+.body-dashboard {
+  background: linear-gradient(to right, #e0e0e0, #bdbdbd, #9e9e9e);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+
+header {
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px); /* Efecto de desenfoque en el fondo */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra con desenfoque en el sidebar */
+}
+
+.navbar {
+  border-bottom: 2px solid #ccc;
+  backdrop-filter: blur(10px); /* Efecto de desenfoque en el fondo */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra con desenfoque en el sidebar */
+}
+
+.navbar .navbar-brand {
+  font-weight: bold;
+}
+
+.sidebar {
+  width: 250px;
+  min-height: 100vh;
+  margin-bottom: 10px;
+  background-color: transparent; /* Eliminar el fondo del sidebar */
+  backdrop-filter: blur(10px); /* Efecto de desenfoque en el fondo */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra con desenfoque en el sidebar */
+}
+
+.main-content {
+  background-color: transparent; /* Eliminar el fondo del main */
+  min-height: 100vh;
+}
+
+/* Estilos para los botones */
+button {
+  font-size: 16px;
+}
+
+/* Ajustes para la barra de navegación */
+.navbar .d-flex {
+  flex: 1;
+  justify-content: center;
+}
+
+.navbar .navbar-brand {
+  flex: 1;
+  text-align: left;
+}
+
+/* Aseguramos que el sidebar y main se ajusten */
+.container-fluid {
+  display: flex;
+}
+
+.sidebar button {
+  text-align: left;
+  padding: 15px;
+  margin: 5px 0;
+  background-color: transparent; /* Quitar fondo de los botones */
+}
+
+/* Estilo de los botones */
+button {
+  font-size: 16px;
+}
+
+button:focus {
+  outline: none; /* Para quitar el borde de enfoque */
+}
