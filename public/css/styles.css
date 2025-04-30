@@ -130,11 +130,6 @@ header {
   min-height: 100vh;
 }
 
-/* Estilos para los botones */
-button {
-  font-size: 16px;
-}
-
 /* Ajustes para la barra de navegación */
 .navbar .d-flex {
   flex: 1;
@@ -156,13 +151,140 @@ button {
   padding: 15px;
   margin: 5px 0;
   background-color: transparent; /* Quitar fondo de los botones */
-}
-
-/* Estilo de los botones */
-button {
   font-size: 16px;
 }
 
-button:focus {
+.items-button:focus {
   outline: none; /* Para quitar el borde de enfoque */
+  transition: background-color 0.3s ease;
+  
+}
+
+.contenido{
+  min-height: 300px;
+  padding: 15px;
+}
+
+
+ .user-table {
+  width: 100%; 
+  border-collapse: collapse;
+  margin-top: 20px; 
+}
+
+.user-table th, .user-table td {
+  border: 1px solid #dee2e6;
+  padding: 8px;
+  text-align: left;
+}
+
+.user-table thead-dark th {
+  background-color: #343a40;
+  color: white;
+}
+
+.user-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+
+.tarjetas-container {
+  width: 90%;
+  max-height: 700px;
+  overflow-y: auto;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.1)); /* Sombra tipo blur */
+  background-color: transparent;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  border: 1px solid #ddd; /* Borde suave */
+}
+
+
+.tarjetas-container::-webkit-scrollbar {
+  width: 12px;
+}
+
+.tarjetas-container::-webkit-scrollbar-track {
+  background-color: inherit; /* Hereda el color de fondo del contenedor */
+}
+
+.tarjetas-container::-webkit-scrollbar-thumb {
+  background-color: rgb(223, 223, 231);
+  border-radius: 20px;
+  border: 3px solid transparent; /* Inicialmente transparente */
+}
+
+.tarjetas-container::-webkit-scrollbar-thumb:hover { /* O cuando esté activo */
+  border-color: orange; /* Cambia el color del borde a naranja al interactuar */
+}
+/* Columna para cada card */
+.col {
+  flex: 1 1 calc(33.333% - 40px); /* 3 columnas */
+  max-width: calc(33.333% - 40px);
+  min-width: 300px;
+  display: flex;
+}
+
+/* Card */
+.card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: white;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.card:hover {
+  transform: scale(1.02); /* Efecto de zoom al pasar el mouse */
+  transition: transform 0.3s ease;
+}
+
+/* Imagen del producto */
+.card-img-top {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+/* Contenido interno de la card */
+.card-body {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* Elementos con espaciado interno */
+.card-body > * {
+  margin-bottom: 10px;
+}
+.card-body > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Etiqueta de stock */
+.stock-label {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #28a745;
+  color: white;
+  padding: 5px 8px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  z-index: 1;
+}
+.stock-label.out-of-stock {
+  background-color: #dc3545;
 }

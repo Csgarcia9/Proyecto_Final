@@ -11,6 +11,35 @@ class Core {
         // Obtener la URL
         $url = $this->getUrl($url);
 
+
+        /*API*/
+        if (isset($url[0]) && strtolower($url[0]) === 'api') {
+            if (isset($url[1]) && file_exists('../app/controllers/Api.php')) {
+                require_once '../app/controllers/Api.php';
+                $this->currentController = new Api($conexion); // Pasar la conexión
+                unset($url[0]); // Eliminar 'api' del array de URL
+                if (isset($url[1]) && method_exists($this->currentController, $url[1])) {
+                    $this->currentMethod = $url[1];
+                    unset($url[1]);
+                } else {
+                    // Método de la API no encontrado
+                    http_response_code(404);
+                    echo json_encode(['error' => 'Endpoint de API no encontrado.']);
+                    return;
+                }
+                $this->params = $url ? array_values($url) : [];
+                call_user_func_array([$this->currentController, $this->currentMethod], $this->params);
+                return;
+            } else {
+                // Controlador de API no encontrado
+                http_response_code(404);
+                echo json_encode(['error' => 'Controlador de API no encontrado.']);
+                return;
+            }
+        }
+    
+
+        ///
         // Verificar si el primer segmento es un controlador válido
         if (isset($url[0]) && file_exists('../app/controllers/' . ucwords($url[0]) . '.php')) {
             $this->currentController = ucwords($url[0]);
@@ -44,7 +73,7 @@ class Core {
         if ($this->currentController === 'Auth') {
             $this->currentController = new $this->currentController($conexion); // Pasar $conexion a Auth
         } else {
-            $this->currentController = new $this->currentController; // Controladores sin $conexion
+            $this->currentController = new $this->currentController($conexion); // Controladores sin $conexion
         }
 
         // Método
@@ -60,9 +89,7 @@ class Core {
         call_user_func_array([$this->currentController, $this->currentMethod], $this->params);
 
         // Pasar la conexión a las vistas si es necesario
-        if (isset($this->currentController) && method_exists($this->currentController, 'setConexion')) {
-            $this->currentController->setConexion($conexion);
-        }
+       
     }
 
     public function getUrl($url = null) {

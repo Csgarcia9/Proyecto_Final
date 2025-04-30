@@ -13,29 +13,42 @@ class Auth {
             $username = $_POST['username'];
             $password = $_POST['password'];
             
-            $authUser = $this->userDAO->login($username, $password);
-
-            if ($authUser) {
-                session_start();
-                $_SESSION['user_id'] = $authUser->user_id;
-                $_SESSION['username'] = $authUser->username;
-                
-            
-                echo "<script>
-                    alert('¡Bienvenido, " . $authUser->username . "!');
-                    window.location.href = '" . URL . "/dashboard';
-                </script>";
-                exit;
-            } else {
-                echo "<script>
-                    alert('Usuario o contraseña incorrectos.');
-                    window.location.href = '" . URL . "/login';
+            if (empty($username) || empty($password)){
+                echo "<script>alert('Por favor completa todos los campos.');
+                window.location.href = '" . URL . "/login';
                 </script>";
                 exit;
             }
-            
+            $user = $this->userDAO->getUser($username);
+            if ($user) {
+                if (password_verify($password, $user->password_hash)) {
+                    session_start();
+                    $_SESSION['user_id'] = $user->user_id;
+                    $_SESSION['username'] = $user->username;
+
+                    $sql = "UPDATE user_admin SET last_login = NOW() WHERE user_id = :user_id";
+                    $stmt = $this->userDAO->prepare($sql);
+                    $stmt->bindParam(':user_id', $user->user_id);
+                    $stmt->execute();
+
+                    echo "<script>alert('¡Bienvenido, " . $user->username . "!');
+                    window.location.href = '" . URL . "/dashboard';</script>";
+                    exit;
+                } else {
+                    echo "<script>alert('Contraseña incorrecta. Intenta de nuevo.');
+                    window.location.href = '" . URL . "/login';</script>";
+                    exit;
+                }
+            }else 
+            {
+                echo "<script>alert('El usuario no existe. Intenta de nuevo.');
+                window.location.href = '" . URL . "/login';</script>";
+                exit;
+            }
         }
+            
     }
+
 
     public function logout() {
         session_start();
@@ -51,5 +64,7 @@ class Auth {
             </script>";
         exit;
     }
+
+
     
 }
